@@ -1,0 +1,11 @@
+#
+# Astroberry push notifications 
+# Pushover backend configuration
+#
+
+# Registered application token
+APP_TOKEN=<your app token>
+
+# User user or target user/group key
+USER_KEY=<your user or target user/group key>
+
