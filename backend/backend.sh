@@ -1,5 +1,5 @@
-#    Pushover backend for Astroberry-Push, a simple push notification layer for Astroberry.
-#    Copyright (C) 2022  Matteo Piscitelli <matteo@matteopiscitelli.it>
+#    Pushover backend for AstroPush, a simple push notification layer.
+#    Copyright (C) 2022-2023  Matteo Piscitelli <matteo@matteopiscitelli.it>
 #
 #    This program is free software: you can redistribute it and/or modify
 #    it under the terms of the GNU General Public License as published by
@@ -31,8 +31,8 @@ push_pushover() {
   prio=0
 
   case "$1" in
-	"astroberry")
-	title="Astroberry@$me"
+	"os")
+	title="OS@$me"
 	;;
 
 	"alignment")
@@ -88,6 +88,7 @@ push_pushover() {
 	#error
 	4)
 	prio=1
+	[ "emergency_on_error" = "yes" ] && prio=2
 	;;
   esac
 

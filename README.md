@@ -1,2 +1,2 @@
-# astroberry-push-backend-pushover
-Astroberry-Push backend for notifications through Pushover service.
+# astropush-backend-pushover
+AstroPush backend for notifications through Pushover service.

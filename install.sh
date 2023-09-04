@@ -1,7 +1,7 @@
 #! /bin/bash
 
 ##############################################################
-# Astroberry-Push Pushover backend install script            #
+# AstroPush Pushover backend install script                  #
 ##############################################################
 
 PREFIX=
@@ -57,21 +57,21 @@ done
 MYDIR=$( dirname $0 )
 MYDIR=$( realpath "$MYDIR" )
 
-BACKENDS_DIR=$PREFIX/usr/share/astroberry-push/backends
-CFG_DIR=$PREFIX/etc/astroberry-push
+BACKENDS_DIR=$PREFIX/usr/share/astropush/backends
+CFG_DIR=$PREFIX/etc/astropush
 
 if [ ! -d "$CFG_DIR" ]; then
-    echo "Error: config directory missing. Is astroberry-push frontend installed?" 1>&2
+    echo "Error: config directory missing. Is astropush frontend installed?" 1>&2
     exit 1
 fi
 
 if [ ! -d "$BACKENDS_DIR" ]; then
-    echo "Error: backends directory missing. Is astroberry-push frontend installed?" 1>&2
+    echo "Error: backends directory missing. Is astropush frontend installed?" 1>&2
     exit 1
 fi
 
 if [ "$1" = "uninstall" ]; then
-    echo "### Uninstalling astroberry-push Pushover backend..."
+    echo "### Uninstalling astropush Pushover backend..."
     sudo rm -R "$BACKENDS_DIR/pushover"
     [ -f "$CFG_DIR/backend.pushover.conf" ] && sudo rm "$CFG_DIR/backend.pushover.conf"
     [ -f "$CFG_DIR/backend.pushover.conf.sample" ] && sudo rm "$CFG_DIR/backend.pushover.conf.sample"
@@ -79,13 +79,17 @@ if [ "$1" = "uninstall" ]; then
     exit 0
 fi
 
-echo "### Installing astroberry-push Pushover backend..."
+echo "### Installing astropush Pushover backend..."
 sudo mkdir -p "$BACKENDS_DIR/pushover"
 sudo cp -r $MYDIR/backend/* "$BACKENDS_DIR/pushover/"
 sudo cp $MYDIR/backend/backend.pushover.conf.sample "$CFG_DIR/"
 
 echo "### Pushover backend installed!"
-echo "### Don't forget to enable it editing /etc/astroberry-push/push.conf"
+echo "### Don't forget to edit "
+echo "###    $CFG_DIR/backend.pushover.conf.sample"
+echo "### filling out required data and rename it"
+echo "###    $CFG_DIR/backend.pushover.conf"
+echo "### Then you need to enable it editing /etc/astropush/push.conf"
 echo
 
 
