@@ -69,6 +69,8 @@ push_pushover() {
 
   esac
 
+  add_pars=''
+
   case $3 in
 	#verbose
 	1)
@@ -88,7 +90,11 @@ push_pushover() {
 	#error
 	4)
 	prio=1
-	[ "emergency_on_error" = "yes" ] && prio=2
+	if [ "$emergency_on_error" = "yes" ]; then
+		prio=2
+		retry=60
+		expire=3600
+	fi
 	;;
   esac
 
@@ -98,6 +104,8 @@ push_pushover() {
 	--form-string "title=$title" \
 	--form-string "message=$2" \
 	--form-string "priority=$prio" \
+	--form-string "retry=$retry" \
+	--form-string "expire=$expire" \
 	https://api.pushover.net/1/messages.json > /dev/null
 
 }

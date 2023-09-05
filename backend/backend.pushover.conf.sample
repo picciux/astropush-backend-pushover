@@ -10,10 +10,11 @@ APP_TOKEN=<your app token>
 USER_KEY=<your user or target user/group key>
 
 # Uncomment if you want error messages to be delivered
-# with Pushover "emergency" priority: they will repeat
-# forever on your devices until you manually acknowledge
-# the notification. Otherwise they will be delivered with
-# Pushover "High" priority, bypassing quiet hours but 
-# without repeating.
+# with Pushover "emergency" priority: they will repeat every 
+# 60 seconds on your devices until you manually acknowledge
+# the notification or one hour elapses. 
+# If commented or different from 'yes', error notifications
+# will be delivered with Pushover "High" priority, bypassing 
+# quiet hours but without repeating.
 #
 #emergency_on_error=yes

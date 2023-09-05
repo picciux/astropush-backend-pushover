@@ -89,7 +89,7 @@ echo "### Don't forget to edit "
 echo "###    $CFG_DIR/backend.pushover.conf.sample"
 echo "### filling out required data and rename it"
 echo "###    $CFG_DIR/backend.pushover.conf"
-echo "### Then you need to enable it editing /etc/astropush/push.conf"
+echo "### Then you need to enable the backend editing /etc/astropush/push.conf"
 echo
 
 
