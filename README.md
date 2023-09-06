@@ -2,7 +2,7 @@
 # Pushover backend for AstroPush.
 
 ### What's AstroPush?
-[AstroPush](https://github.com/picciux/AstroPush.git) is a shell script based notify abstraction layer, targeted mainly at KStars/Ekos astrophotography systems on linux.
+[AstroPush](https://github.com/picciux/astropush.git) is a shell script based notify abstraction layer, targeted mainly at KStars/Ekos astrophotography systems on linux.
 
 ### How to use.
 This is the AstroPush backend to route notifications through [Pushover](https://pushover.net) service. To use it, you need a Pushover **account**, and related auth tokens.
