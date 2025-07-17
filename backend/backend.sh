@@ -16,7 +16,7 @@
 
 # Pushover backend implementation
 
-BACKEND_VERSION="1.1"
+BACKEND_VERSION="1.2"
 
 push_pushover() {
   # Check config file exists
