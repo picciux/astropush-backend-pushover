@@ -23,6 +23,9 @@ push_pushover() {
   [ -f "$CONFIG_DIR/backend.pushover.conf" ] || { echo >&2 "Config for Pushover backend not found!"; exit 1; }
   source "$CONFIG_DIR/backend.pushover.conf"
 
+  # override with user config
+  [ -f "$USER_CONFIG_BE_PREFIX.pushover.conf" ] && source $USER_CONFIG_BE_PREFIX.pushover.conf
+
   # Check mandatory configs are valid
   [ "$APP_TOKEN" ] || { echo >&2 "Empty or not valid app token in config"; exit 1; }
   [ "$USER_KEY" ] ||  { echo >&2 "Empty or not valid user key in config"; exit 1; }
