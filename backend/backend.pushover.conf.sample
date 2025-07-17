@@ -3,11 +3,12 @@
 # Pushover backend configuration
 #
 
-# Registered application token
-APP_TOKEN=<your app token>
+# Registered application token: fill with your app token
+APP_TOKEN=
 
-# User or target user/group key
-USER_KEY=<your user or target user/group key>
+# User or target user/group key: fill with your user or
+# group key.
+USER_KEY=
 
 # Uncomment if you want error messages to be delivered
 # with Pushover "emergency" priority: they will repeat every 

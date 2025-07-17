@@ -59,6 +59,7 @@ MYDIR=$( realpath "$MYDIR" )
 
 BACKENDS_DIR=$PREFIX/usr/share/astropush/backends
 CFG_DIR=$PREFIX/etc/astropush
+DOC_DIR=$PREFIX/usr/share/doc/astropush
 
 if [ ! -d "$CFG_DIR" ]; then
     echo "Error: config directory missing. Is astropush frontend installed?" 1>&2
@@ -70,26 +71,28 @@ if [ ! -d "$BACKENDS_DIR" ]; then
     exit 1
 fi
 
-if [ "$1" = "uninstall" ]; then
+if [ "$UNINSTALL" = "yes" ]; then
     echo "### Uninstalling astropush Pushover backend..."
-    sudo rm -R "$BACKENDS_DIR/pushover"
-    [ -f "$CFG_DIR/backend.pushover.conf" ] && sudo rm "$CFG_DIR/backend.pushover.conf"
-    [ -f "$CFG_DIR/backend.pushover.conf.sample" ] && sudo rm "$CFG_DIR/backend.pushover.conf.sample"
+    rm -R "$BACKENDS_DIR/pushover"
+    [ -f "$CFG_DIR/backend.pushover.conf" ] && rm "$CFG_DIR/backend.pushover.conf"
+    rm "$DOC_DIR/README.backend.pushover.md"
+    rm "$DOC_DIR/LICENSE.backend.pushover"
     echo "### Done!"
     exit 0
 fi
 
 echo "### Installing astropush Pushover backend..."
-sudo mkdir -p "$BACKENDS_DIR/pushover"
-sudo cp -r $MYDIR/backend/* "$BACKENDS_DIR/pushover/"
-sudo cp $MYDIR/backend/backend.pushover.conf.sample "$CFG_DIR/"
+
+install -d "$BACKENDS_DIR/pushover"
+install -m 644 $MYDIR/backend/backend.sh $MYDIR/backend/backend.pushover.conf.sample "$BACKENDS_DIR/pushover/"
+install -m 644 $MYDIR/backend/backend.pushover.conf.sample "$CFG_DIR/backend.pushover.conf"
+install -m 644 $MYDIR/README.md "$DOC_DIR/README.backend.pushover.md"
+install -m 644 $MYDIR/LICENSE "$DOC_DIR/LICENSE.backend.pushover"
 
 echo "### Pushover backend installed!"
-echo "### Don't forget to edit "
-echo "###    $CFG_DIR/backend.pushover.conf.sample"
-echo "### filling out required data and rename it"
-echo "###    $CFG_DIR/backend.pushover.conf"
-echo "### Then you need to enable the backend editing /etc/astropush/push.conf"
+echo "### Next steps, check "
+echo "###     $CFG_DIR/push.conf.conf"
+echo "###     $CFG_DIR/backend.pushover.conf"
+echo "### to enable and configure it system-wide."
+echo "### Check documentation for details."
 echo
-
-

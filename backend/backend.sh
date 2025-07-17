@@ -16,15 +16,14 @@
 
 # Pushover backend implementation
 
-BACKEND_VERSION="1.0"
+BACKEND_VERSION="1.1"
 
 push_pushover() {
   # Check config file exists
-  [ -f "$CONFIG_DIR/backend.pushover.conf" ] || { echo >&2 "Config for Pushover backend not found!"; exit 1; }
-  source "$CONFIG_DIR/backend.pushover.conf"
+  [ -f "$CONFIG_DIR/backend.pushover.conf" ] && source "$CONFIG_DIR/backend.pushover.conf"
 
   # override with user config
-  [ -f "$USER_CONFIG_BE_PREFIX.pushover.conf" ] && source $USER_CONFIG_BE_PREFIX.pushover.conf
+  [ -f "$USER_CONFIG_BE_PREFIX.pushover.conf" ] && source "$USER_CONFIG_BE_PREFIX.pushover.conf"
 
   # Check mandatory configs are valid
   [ "$APP_TOKEN" ] || { echo >&2 "Empty or not valid app token in config"; exit 1; }
@@ -32,6 +31,7 @@ push_pushover() {
 
   me="$( hostname )"
   prio=0
+  img=$1
 
   case "$1" in
 	"os")
@@ -68,6 +68,7 @@ push_pushover() {
 
 	*)
 	title="Sconosciuto: $1@$me"
+	img=''
 	;;
 
   esac
@@ -102,13 +103,13 @@ push_pushover() {
   esac
 
   curl -s \
-	--form-string "token=$APP_TOKEN" \
-	--form-string "user=$USER_KEY" \
-	--form-string "title=$title" \
-	--form-string "message=$2" \
-	--form-string "priority=$prio" \
-	--form-string "retry=$retry" \
-	--form-string "expire=$expire" \
-	https://api.pushover.net/1/messages.json > /dev/null
+		--form-string "token=$APP_TOKEN" \
+		--form-string "user=$USER_KEY" \
+		--form-string "title=$title" \
+		--form-string "message=$2" \
+		--form-string "priority=$prio" \
+		--form-string "retry=$retry" \
+		--form-string "expire=$expire" \
+		https://api.pushover.net/1/messages.json > /dev/null
 
 }

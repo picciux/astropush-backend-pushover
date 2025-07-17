@@ -10,8 +10,8 @@ This is the AstroPush backend to route notifications through [Pushover](https://
 ### Installation
 1. Run `install.sh` script in this directory
 2. Enter `/etc/astropush` folder.
-3. Edit `backend.pushover.conf.sample` filling in needed data.
-4. Rename `backend.pushover.conf.sample` to `backend.pushover.conf`
-5. Edit AstroPush main config `push.conf` (you need sudo) and enable this backend following comments inside the file itself.
-6. You're done! From a terminal, try: `> astropush os 'This is a test' info`. You should receive a notification on your Pushover connected device(s).
+3. As an admin, you can edit `backend.pushover.conf` and `push.conf`, filling in needed data, to configure and enable the backend system-wide: this way, every user on the system will send AstroPush notifications using the system-wide credentials.
+4. Alternatively, every user can override the system configuration creating and editing `push.conf` and `astropush-backend.pushover.conf` inside `~/.config` folder, thus using their own key and token.
+
+You're done! From a terminal, try: `> astropush os 'This is a test' info`. You should receive a notification on your Pushover connected device(s).
 
