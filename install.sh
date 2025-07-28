@@ -91,7 +91,7 @@ install -m 644 $MYDIR/LICENSE "$DOC_DIR/LICENSE.backend.pushover"
 
 echo "### Pushover backend installed!"
 echo "### Next steps, check "
-echo "###     $CFG_DIR/push.conf.conf"
+echo "###     $CFG_DIR/push.conf"
 echo "###     $CFG_DIR/backend.pushover.conf"
 echo "### to enable and configure it system-wide."
 echo "### Check documentation for details."
