@@ -1,0 +1,2 @@
+backend/backend.sh /usr/share/astropush/backends/pushover
+backend/backend.pushover.conf.sample /etc/astropush
